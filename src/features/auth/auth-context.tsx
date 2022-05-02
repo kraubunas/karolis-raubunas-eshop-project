@@ -35,31 +35,31 @@ export const AuthProvider: React.FC = ({ children }) => {
       const { message } = (err as Error);
       setError(message);
     }
-
-    const logout: AuthContextType['logout'] = () => {
-      setLoggedIn(false);
-      navigate('/');
-    };
-
-    const clearError: AuthContextType['clearError'] = () => {
-      setError(null);
-    };
-
-    const providerValue = useMemo(() => ({
-      user,
-      loggedIn,
-      error,
-      clearError,
-      login,
-      logout,
-    }), [loggedIn, user, error]);
-
-    return (
-      <AuthContext.Provider value={providerValue}>
-        {children}
-      </AuthContext.Provider>
-    );
   };
+
+  const logout: AuthContextType['logout'] = () => {
+    setLoggedIn(false);
+    navigate('/');
+  };
+
+  const clearError: AuthContextType['clearError'] = () => {
+    setError(null);
+  };
+
+  const providerValue = useMemo(() => ({
+    user,
+    loggedIn,
+    error,
+    clearError,
+    login,
+    logout,
+  }), [loggedIn, user, error]);
+
+  return (
+    <AuthContext.Provider value={providerValue}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
 export default AuthContext;
