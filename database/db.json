@@ -18,5 +18,17 @@
             "category": "zvakide",
             "price": "10.99€"
         }
+    ],
+    "users": [
+        {
+            "id": 4,
+            "email": "karolis@raubunas.lt",
+            "password": "123456"
+        },
+        {
+            "id": 5,
+            "email": "raubunas@kartolis.lt",
+            "password": "123456KAR"
+        }
     ]
 }
