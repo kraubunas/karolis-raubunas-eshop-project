@@ -23,9 +23,9 @@ const Navbar: React.FC = () => {
             Personal Blog
           </Typography>
           <NavbarLink to="/">Home</NavbarLink>
-          <NavbarLink to="/blog">Products</NavbarLink>
+          <NavbarLink to="/products">Products</NavbarLink>
           <NavbarLink to="/about">About</NavbarLink>
-          <Box>
+          <Box sx={{ display: 'flex' }}>
             {loggedIn ? <NavbarAuthMenu /> : <NavbarVisitorMenu />}
           </Box>
         </Toolbar>

@@ -10,7 +10,7 @@ import {
   Typography,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import deepOrange from '@mui/material/colors/deepOrange';
+import deepPurple from '@mui/material/colors/deepPurple';
 import AuthContext from '../../features/auth/auth-context';
 
 const NavbarAuthMenu: React.FC = () => {
@@ -42,7 +42,7 @@ const NavbarAuthMenu: React.FC = () => {
         onClick={handleMenuOpen}
       >
         <Typography sx={{ mr: 2, userSelect: 'none' }}>{user?.email}</Typography>
-        <Avatar sx={{ bgcolor: deepOrange[500] }}>U</Avatar>
+        <Avatar sx={{ bgcolor: deepPurple[500] }}>OP</Avatar>
       </Box>
       <Popper
         placement="bottom-end"
