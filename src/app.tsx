@@ -9,6 +9,9 @@ import HomePage from './pages/home-page';
 import ProductsPage from './pages/product-page';
 import LandingPageLayout from './components/landing-page-layout';
 import AboutPage from './pages/about-page';
+import LoginPage from './pages/login-page';
+import ProfilePage from './pages/profile-page';
+import RegisterPage from './pages/register-page';
 
 const App: React.FC = () => (
   <BrowserRouter>
@@ -17,6 +20,31 @@ const App: React.FC = () => (
         <Route path="/" element={<HomePage />} />
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route
+          path="auth/login"
+          element={(
+            <RequireVisitor>
+              <LoginPage />
+            </RequireVisitor>
+          )}
+        />
+        <Route
+          path="auth/register"
+          element={(
+            <RequireVisitor>
+              <RegisterPage />
+            </RequireVisitor>
+          )}
+        />
+        <Route
+          path="profile"
+          element={(
+            <RequireAuth>
+              <ProfilePage />
+            </RequireAuth>
+          )}
+        />
+
       </Route>
     </Routes>
   </BrowserRouter>
