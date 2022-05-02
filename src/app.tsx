@@ -12,6 +12,8 @@ import AboutPage from './pages/about-page';
 import LoginPage from './pages/login-page';
 import ProfilePage from './pages/profile-page';
 import RegisterPage from './pages/register-page';
+import RequireAuth from './routing/require-auth';
+import RequireVisitor from './routing/require-visitor';
 
 const App: React.FC = () => (
   <BrowserRouter>
