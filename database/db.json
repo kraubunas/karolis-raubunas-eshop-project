@@ -1,0 +1,22 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "Biciu vasko zvake",
+            "category": "zvakes",
+            "price": "10.99€"
+        },
+        {
+            "id": 2,
+            "name": "Betono zvakide",
+            "category": "zvakide",
+            "price": "10.99€"
+        },
+        {
+            "id": 3,
+            "name": "Betoninis padekliukas zvakei",
+            "category": "zvakide",
+            "price": "10.99€"
+        }
+    ]
+}
