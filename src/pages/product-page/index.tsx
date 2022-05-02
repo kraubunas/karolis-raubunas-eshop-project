@@ -4,9 +4,9 @@ import {
   Typography, Container, Grid,
 } from '@mui/material';
 import axios from 'axios';
-import Product from '../types/products';
-import Section from '../components/section';
-import ProductCard from '../components/product-card/product-card';
+import Product from '../../types/products';
+import Section from '../../components/section';
+import ProductCard from '../../components/product-card/product-card';
 
 const ProductsPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);

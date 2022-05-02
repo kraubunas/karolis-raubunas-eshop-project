@@ -2,10 +2,10 @@ import {
   Box, Button, Container, Typography,
 } from '@mui/material';
 import React from 'react';
-import Btn from '../components/button/button';
-import Section from '../components/section';
-import SwiperComponent from '../components/swiper/swiper';
-import customTheme from '../styles/theme';
+// import Btn from '../../components/button/button';
+import Section from '../../components/section';
+import SwiperComponent from '../../components/swiper/swiper';
+import customTheme from '../../styles/theme';
 
 const HomePage: React.FC = () => (
   <Container>
