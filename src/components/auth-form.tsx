@@ -7,7 +7,7 @@ import {
   Paper,
   Typography,
 } from '@mui/material';
-import SecurityIcon from '@mui/icons-material/Security';
+import LoginIcon from '@mui/icons-material/Login';
 import AuthContext from '../features/auth/auth-context';
 
 type AuthFormProps = {
@@ -58,7 +58,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
         }}
         onSubmit={onSubmit}
       >
-        <SecurityIcon color="primary" sx={{ fontSize: 45 }} />
+        <LoginIcon color="primary" sx={{ fontSize: 45 }} />
         <Typography component="h1" variant="h4">{formTitle}</Typography>
 
         <Box sx={{
