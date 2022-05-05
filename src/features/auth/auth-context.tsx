@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import useLocalStorage from '../../hooks/use-local-storage';
 import Credentials from '../../types/credentials';
 import User from '../../types/user';
+import UserRegistration from '../../types/user-registration';
 import AuthService from './auth-service';
 
 export type AuthContextType = {
@@ -11,6 +12,7 @@ export type AuthContextType = {
   error: string | null,
   clearError: VoidFunction,
   login: (credentials: Credentials, next: string) => void,
+  register: (credentials: UserRegistration) => void,
   logout: VoidFunction,
 };
 
@@ -37,6 +39,10 @@ export const AuthProvider: React.FC = ({ children }) => {
     }
   };
 
+  const register: AuthContextType['register'] = async (userRegistration) => {
+    console.log(userRegistration);
+  };
+
   const logout: AuthContextType['logout'] = () => {
     setLoggedIn(false);
     navigate('/');
@@ -52,6 +58,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     error,
     clearError,
     login,
+    register,
     logout,
   }), [loggedIn, user, error]);
 

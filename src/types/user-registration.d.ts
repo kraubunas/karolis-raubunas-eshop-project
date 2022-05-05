@@ -1,7 +1,7 @@
-type UserReg = {
+type UserRegistration = {
   email: string,
   password: string,
   repeatPassword: string,
 };
 
-export default UserReg;
+export default UserRegistration;
