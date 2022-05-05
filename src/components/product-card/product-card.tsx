@@ -1,15 +1,20 @@
-import { Card, Typography, Button } from '@mui/material';
+import {
+  Card, Typography, Button,
+} from '@mui/material';
 import React from 'react';
 import Product from '../../types/products';
+import Img from '../img';
 
 type ProductCardProps = Omit<Product, 'id'>;
 
-const ProductCard: React.FC<ProductCardProps> = ({ name, category, price }) => (
+const ProductCard: React.FC<ProductCardProps> = ({
+  name, category, price, image,
+}) => (
   <Card sx={(theme) => theme.mixins.box}>
     <Typography variant="h4" sx={{ textAlign: 'center' }}>
       {`${name}`}
     </Typography>
-    <Typography variant="h3">IMG</Typography>
+    <Img src={image} sx={{ height: '100%', width: '100%' }} alt="" />
     <Typography variant="h6" component="p">
       {`${category}`}
     </Typography>

@@ -12,7 +12,7 @@ const ProductsPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    axios.get<Product[]>('http://localhost:3000/products')
+    axios.get<Product[]>('http://localhost:8000/products')
       .then(({ data }) => setProducts(data))
       .catch(console.error);
   }, []);
