@@ -37,6 +37,11 @@
       "email": "kraubun@gmail.com",
       "password": "123456",
       "id": 6
+    },
+    {
+      "email": "kraubun@karolis.com",
+      "password": "123456",
+      "id": 7
     }
   ]
 }
