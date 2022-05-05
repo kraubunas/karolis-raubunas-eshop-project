@@ -6,7 +6,7 @@ import User from '../../types/user';
 
 namespace AuthService {
   export const login = async ({ email, password }: Credentials): Promise<User> => {
-    const { data: tempUsers } = await axios.get<TempUser[]>(`http://localhost:3000/users?email=${email}`);
+    const { data: tempUsers } = await axios.get<TempUser[]>(`http://localhost:8000/users?email=${email}`);
 
     if (tempUsers.length === 0) {
       throw new Error('user email is incorect');

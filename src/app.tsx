@@ -14,9 +14,10 @@ import ProfilePage from './pages/profile-page';
 import RegisterPage from './pages/register-page';
 import RequireAuth from './routing/require-auth';
 import RequireVisitor from './routing/require-visitor';
+import { AuthProvider } from './features/auth/auth-context';
 
-const App: React.FC = () => (
-  <BrowserRouter>
+const Root: React.FC = () => (
+  <AuthProvider>
     <Routes>
       <Route path="/" element={<LandingPageLayout />}>
         <Route path="/" element={<HomePage />} />
@@ -49,6 +50,13 @@ const App: React.FC = () => (
 
       </Route>
     </Routes>
+
+  </AuthProvider>
+);
+
+const App: React.FC = () => (
+  <BrowserRouter>
+    <Root />
   </BrowserRouter>
 );
 
