@@ -4,7 +4,7 @@ import useLocalStorage from '../../hooks/use-local-storage';
 import Credentials from '../../types/credentials';
 import User from '../../types/user';
 import UserRegistration from '../../types/user-registration';
-import AuthService from './auth-service';
+import AuthService, { AuthPromise } from './auth-service';
 
 export type AuthContextType = {
   user: null | User,
@@ -24,12 +24,9 @@ export const AuthProvider: React.FC = ({ children }) => {
   const [user, setUser] = useLocalStorage<AuthContextType['user']>('user', null);
   const [error, setError] = useState<AuthContextType['error']>(null);
 
-  const login: AuthContextType['login'] = async (credentials: Credentials, next) => {
-    if (error) {
-      setError(null);
-    }
+  const authenticate = async (credentials: Credentials, authMethod: AuthPromise, next = '/') => {
     try {
-      const loggedInUser = await AuthService.login(credentials);
+      const loggedInUser = await authMethod(credentials);
       setLoggedIn(true);
       setUser(loggedInUser);
       navigate(next);
@@ -39,8 +36,26 @@ export const AuthProvider: React.FC = ({ children }) => {
     }
   };
 
+  const login: AuthContextType['login'] = async (credentials: Credentials, next) => {
+    if (error) {
+      setError(null);
+    }
+    authenticate(credentials, AuthService.login, next);
+  };
+
   const register: AuthContextType['register'] = async (userRegistration) => {
-    console.log(userRegistration);
+    if (error) setError(null);
+
+    if (userRegistration.password !== userRegistration.repeatPassword) {
+      setError('Passwords do not match');
+      return;
+    }
+
+    const credentials: Credentials = {
+      email: userRegistration.email,
+      password: userRegistration.password,
+    };
+    authenticate(credentials, AuthService.register);
   };
 
   const logout: AuthContextType['logout'] = () => {
