@@ -16,47 +16,42 @@ import RequireAuth from './routing/require-auth';
 import RequireVisitor from './routing/require-visitor';
 import { AuthProvider } from './features/auth/auth-context';
 
-const Root: React.FC = () => (
-  <AuthProvider>
-    <Routes>
-      <Route path="/" element={<LandingPageLayout />}>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/products" element={<ProductsPage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route
-          path="auth/login"
-          element={(
-            <RequireVisitor>
-              <LoginPage />
-            </RequireVisitor>
-          )}
-        />
-        <Route
-          path="auth/register"
-          element={(
-            <RequireVisitor>
-              <RegisterPage />
-            </RequireVisitor>
-          )}
-        />
-        <Route
-          path="profile"
-          element={(
-            <RequireAuth>
-              <ProfilePage />
-            </RequireAuth>
-          )}
-        />
-
-      </Route>
-    </Routes>
-
-  </AuthProvider>
-);
-
 const App: React.FC = () => (
   <BrowserRouter>
-    <Root />
+    <AuthProvider>
+      <Routes>
+        <Route path="/" element={<LandingPageLayout />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/products" element={<ProductsPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route
+            path="auth/login"
+            element={(
+              <RequireVisitor>
+                <LoginPage />
+              </RequireVisitor>
+          )}
+          />
+          <Route
+            path="auth/register"
+            element={(
+              <RequireVisitor>
+                <RegisterPage />
+              </RequireVisitor>
+          )}
+          />
+          <Route
+            path="profile"
+            element={(
+              <RequireAuth>
+                <ProfilePage />
+              </RequireAuth>
+          )}
+          />
+
+        </Route>
+      </Routes>
+    </AuthProvider>
   </BrowserRouter>
 );
 
