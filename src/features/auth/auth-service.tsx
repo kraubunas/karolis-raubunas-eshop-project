@@ -11,13 +11,13 @@ namespace AuthService {
     const { data: tempUsers } = await axios.get<TempUser[]>(`http://localhost:8000/users?email=${email}`);
 
     if (tempUsers.length === 0) {
-      throw new Error('user email is incorect');
+      throw new Error('User email is incorect');
     }
 
     const [tempUser] = tempUsers;
 
     if (tempUser.password !== password) {
-      throw new Error('password is incorect');
+      throw new Error('Password is incorect');
     }
 
     return {

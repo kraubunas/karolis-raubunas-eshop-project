@@ -18,6 +18,7 @@ const RegisterPage: React.FC = () => {
     <AuthForm
       formTitle="Register"
       submitText="Register"
+      btnActive
       onSubmit={handleRegister}
     >
       <TextField

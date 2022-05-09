@@ -3,6 +3,7 @@ import {
   Alert,
   Box,
   Button,
+  CircularProgress,
   Container,
   Paper,
   Typography,
@@ -13,6 +14,7 @@ import AuthContext from '../features/auth/auth-context';
 type AuthFormProps = {
   formTitle: string,
   submitText: string,
+  btnActive?: boolean,
   onSubmit?: React.FormEventHandler<HTMLFormElement>,
 };
 
@@ -21,10 +23,11 @@ const contentWidth = 400;
 const AuthForm: React.FC<AuthFormProps> = ({
   formTitle,
   submitText,
+  btnActive = true,
   onSubmit,
   children,
 }) => {
-  const { error, clearError } = useContext(AuthContext);
+  const { loading, error, clearError } = useContext(AuthContext);
 
   return (
     <Container sx={{ position: 'relative', pt: 20 }}>
@@ -71,7 +74,14 @@ const AuthForm: React.FC<AuthFormProps> = ({
         >
           {children}
         </Box>
-        <Button variant="contained" size="large" type="submit">{submitText}</Button>
+        <Button
+          variant="contained"
+          size="large"
+          type="submit"
+          disabled={!btnActive || loading}
+        >
+          {loading ? <CircularProgress /> : submitText}
+        </Button>
       </Paper>
     </Container>
   );

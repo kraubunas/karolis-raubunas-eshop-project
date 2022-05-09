@@ -1,5 +1,6 @@
 import React, { createContext, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import pause from '../../components/helpers/pause';
 import useLocalStorage from '../../hooks/use-local-storage';
 import Credentials from '../../types/credentials';
 import User from '../../types/user';
@@ -10,6 +11,7 @@ export type AuthContextType = {
   user: null | User,
   loggedIn: boolean,
   error: string | null,
+  loading: boolean,
   clearError: VoidFunction,
   login: (credentials: Credentials, next: string) => void,
   register: (credentials: UserRegistration) => void,
@@ -20,19 +22,22 @@ const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
 export const AuthProvider: React.FC = ({ children }) => {
   const navigate = useNavigate();
-  const [loggedIn, setLoggedIn] = useLocalStorage<AuthContextType['loggedIn']>('loggedIn', false);
   const [user, setUser] = useLocalStorage<AuthContextType['user']>('user', null);
   const [error, setError] = useState<AuthContextType['error']>(null);
+  const [loading, setLoading] = useState<AuthContextType['loading']>(false);
 
   const authenticate = async (credentials: Credentials, authMethod: AuthPromise, next = '/') => {
     try {
+      setLoading(true);
+      await pause(3000);
       const loggedInUser = await authMethod(credentials);
-      setLoggedIn(true);
       setUser(loggedInUser);
       navigate(next);
     } catch (err) {
       const { message } = (err as Error);
       setError(message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -59,7 +64,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   };
 
   const logout: AuthContextType['logout'] = () => {
-    setLoggedIn(false);
+    setUser(null);
     navigate('/');
   };
 
@@ -69,13 +74,14 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   const providerValue = useMemo(() => ({
     user,
-    loggedIn,
+    loggedIn: Boolean(user),
     error,
+    loading,
     clearError,
     login,
     register,
     logout,
-  }), [loggedIn, user, error]);
+  }), [user, error, loading]);
 
   return (
     <AuthContext.Provider value={providerValue}>
