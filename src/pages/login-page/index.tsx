@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { TextField } from '@mui/material';
+import { Alert, TextField } from '@mui/material';
 import * as Yup from 'yup';
 
 import { FormikConfig, useFormik } from 'formik';
@@ -75,7 +75,7 @@ const LoginPage: React.FC = () => {
         onChange={handleChange}
         onBlur={handleBlur}
         error={touched.email && Boolean(errors.email)}
-        helperText={touched.email && errors.email}
+        helperText={touched.email && errors.email ? <Alert severity="error">{touched.email && errors.email}</Alert> : null}
         disabled={loading}
       />
       <TextField
@@ -87,7 +87,7 @@ const LoginPage: React.FC = () => {
         onChange={handleChange}
         onBlur={handleBlur}
         error={touched.password && Boolean(errors.password)}
-        helperText={touched.password && errors.password}
+        helperText={touched.password && errors.password ? <Alert severity="error">{touched.password && errors.password}</Alert> : null}
         disabled={loading}
       />
     </AuthForm>
