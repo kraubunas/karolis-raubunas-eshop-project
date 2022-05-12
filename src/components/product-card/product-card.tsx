@@ -1,8 +1,9 @@
 import {
-  Card, Typography, Button,
+  Card, Typography, Button, Box,
 } from '@mui/material';
 import React from 'react';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+import { QuantityPicker } from 'react-qty-picker';
 import Product from '../../types/products';
 import Img from '../img';
 
@@ -20,10 +21,16 @@ const ProductCard: React.FC<ProductCardProps> = ({
       {`${category}`}
     </Typography>
     <Typography variant="body1">{`${price}`}</Typography>
-    <Button variant="contained" color="primary" sx={{ display: 'flex', gap: 3 }}>
-      <ShoppingBasketIcon />
-      Add to basket
-    </Button>
+    <Box sx={{
+      display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: 2,
+    }}
+    >
+      <QuantityPicker min={0} max={5} width="50px" />
+      <Button variant="contained" color="primary" sx={{ display: 'flex', gap: 3 }}>
+        <ShoppingBasketIcon />
+        Add to basket
+      </Button>
+    </Box>
   </Card>
 
 );
