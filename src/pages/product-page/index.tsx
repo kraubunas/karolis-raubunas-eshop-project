@@ -1,21 +1,25 @@
 /* eslint-disable no-console */
 import React, { useEffect, useState } from 'react';
 import {
-  Typography, Container, Grid,
+  Box, Typography, Container, Grid, Paper,
 } from '@mui/material';
 import axios from 'axios';
 import Product from '../../types/products';
 import Section from '../../components/section';
 import ProductCard from '../../components/product-card/product-card';
+import Img from '../../components/img';
+import { useRootSelector } from '../../store';
 
 const ProductsPage: React.FC = () => {
-  const [products, setProducts] = useState<Product[]>([]);
+//   const [products, setProducts] = useState<Product[]>([]);
 
-  useEffect(() => {
-    axios.get<Product[]>('http://localhost:8000/products')
-      .then(({ data }) => setProducts(data))
-      .catch(console.error);
-  }, []);
+  //   useEffect(() => {
+  //     axios.get<Product[]>('http://localhost:8000/products')
+  //       .then(({ data }) => setProducts(data))
+  //       .catch(console.error);
+  //   }, []);
+
+  const products = useRootSelector((state) => state.products);
 
   return (
     <Container>
@@ -38,7 +42,6 @@ const ProductsPage: React.FC = () => {
           ))}
         </>
       </Section>
-
     </Container>
   );
 };
