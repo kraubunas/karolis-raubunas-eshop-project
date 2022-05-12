@@ -1,13 +1,11 @@
 /* eslint-disable no-console */
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
-  Box, Typography, Container, Grid, Paper,
+  Box, Typography, Container, Grid,
 } from '@mui/material';
-import axios from 'axios';
-import Product from '../../types/products';
+import { useDispatch } from 'react-redux';
 import Section from '../../components/section';
 import ProductCard from '../../components/product-card/product-card';
-import Img from '../../components/img';
 import { useRootSelector } from '../../store';
 
 const ProductsPage: React.FC = () => {
@@ -20,6 +18,15 @@ const ProductsPage: React.FC = () => {
   //   }, []);
 
   const products = useRootSelector((state) => state.products);
+  const cart = useRootSelector((state) => state.cart);
+  const dispatch = useDispatch();
+
+  const addToCart = (id: string): void => {
+    dispatch({
+      type: 'ADD_TO_CART',
+      payload: { id },
+    });
+  };
 
   return (
     <Container>
@@ -35,13 +42,27 @@ const ProductsPage: React.FC = () => {
 
       <Section sx={(theme) => theme.mixins.section}>
         <>
-          {products.map(({ id, ...productProps }) => (
-            <Grid key={id} item xs={4}>
-              <ProductCard {...productProps} />
+          {products.map((product) => (
+            <Grid key={product.id} item xs={4}>
+              <ProductCard {...product} addToCart={addToCart} />
             </Grid>
           ))}
         </>
       </Section>
+
+      <Typography
+        component="h1"
+        variant="h3"
+        sx={{
+          color: 'lightBlue.main',
+        }}
+      >
+        Cart
+
+      </Typography>
+      <Box component="pre">
+        {JSON.stringify(cart, null, 2)}
+      </Box>
     </Container>
   );
 };

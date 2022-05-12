@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/default-param-last */
 import { Reducer } from 'redux';
+import { v4 as createId } from 'uuid';
 import { Action, State } from './types';
 
 const initialState: State = {
@@ -25,22 +26,22 @@ const initialState: State = {
       price: '10.99€',
       image: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuvqpY8jxZ4vF53WBZGG9OULqPg_NXy0TbOg&usqp=CAU'],
     },
-
   ],
+  cart: [],
 };
 
 const mainReducer: Reducer<State, Action> = (state = initialState, action) => {
-  switch (action.type) {
-    case 'ADD_ITEM':
-      return state;
-    case 'REMOVE_ITEM':
-      return state;
-    case 'UPDATE_ITEM':
-      return state;
-
-    default:
-      return state;
+  if (action.type === 'ADD_TO_CART') {
+    return {
+      ...state,
+      cart: [
+        ...state.cart,
+        { id: createId(), itemId: action.payload.id, amount: 1 },
+      ],
+    };
   }
+
+  return { ...state };
 };
 
 export default mainReducer;

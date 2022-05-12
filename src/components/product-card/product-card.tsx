@@ -7,10 +7,12 @@ import { QuantityPicker } from 'react-qty-picker';
 import Product from '../../types/products';
 import Img from '../img';
 
-type ProductCardProps = Omit<Product, 'id'>;
+type ProductCardProps = Product & {
+  addToCart: (itemId: string) => void,
+};
 
 const ProductCard: React.FC<ProductCardProps> = ({
-  name, category, price, image,
+  id, name, category, price, image, addToCart,
 }) => (
   <Card sx={(theme) => theme.mixins.box}>
     <Typography variant="h4" sx={{ textAlign: 'center' }}>
@@ -26,7 +28,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
     }}
     >
       <QuantityPicker min={0} max={5} width="50px" />
-      <Button variant="contained" color="primary" sx={{ display: 'flex', gap: 3 }}>
+      <Button variant="contained" color="primary" sx={{ display: 'flex', gap: 3 }} onClick={() => addToCart(id)}>
         <ShoppingBasketIcon />
         Add to basket
       </Button>
