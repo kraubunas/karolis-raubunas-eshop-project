@@ -21,7 +21,7 @@ const Navbar: React.FC = () => {
   const [cartItems, setCartItems] = useState([] as CartItemType[]);
   const { loggedIn } = useContext(AuthContext);
 
-  const getTotalItems = (items: CartItemType[]) => null;
+  const getTotalItems = (items: CartItemType[]) => items.reduce((ack: number, item) => ack + item.amount, 0);
 
   return (
 

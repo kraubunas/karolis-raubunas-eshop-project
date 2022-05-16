@@ -33,7 +33,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
       </Box>
       <Button variant="contained" color="primary" sx={{ display: 'flex', gap: 3 }} onClick={() => addToCart(id)}>
         <AddShoppingCart />
-        Add to basket
+        Add to cart
       </Button>
     </Box>
   </Card>
