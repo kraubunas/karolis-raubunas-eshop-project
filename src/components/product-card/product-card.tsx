@@ -2,10 +2,11 @@ import {
   Card, Typography, Button, Box,
 } from '@mui/material';
 import React from 'react';
-import { QuantityPicker } from 'react-qty-picker';
 import { AddShoppingCart } from '@mui/icons-material';
+import { NumberPicker } from 'react-widgets/cjs';
 import Product from '../../types/products';
 import Img from '../img';
+import 'react-widgets/styles.css';
 
 type ProductCardProps = Product & {
   addToCart: (itemId: string) => void,
@@ -27,7 +28,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
       display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: 2,
     }}
     >
-      <QuantityPicker min={0} max={5} width="50px" />
+      <Box sx={{ width: '70px' }}>
+        <NumberPicker defaultValue={1} min={1} max={5} />
+      </Box>
       <Button variant="contained" color="primary" sx={{ display: 'flex', gap: 3 }} onClick={() => addToCart(id)}>
         <AddShoppingCart />
         Add to basket
