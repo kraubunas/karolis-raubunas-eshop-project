@@ -2,10 +2,13 @@ import {
   AppBar,
   Box,
   Container,
+  IconButton,
   Toolbar,
   Typography,
 } from '@mui/material';
 import React, { useContext } from 'react';
+import Badge from '@mui/material/Badge';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import NavbarAuthMenu from './navbar-auth-menu';
 import NavbarLink from './navbar-link';
 import NavbarVisitorMenu from './navbar-visitor-menu';
@@ -28,6 +31,11 @@ const Navbar: React.FC = () => {
           <Box sx={{ display: 'flex' }}>
             {loggedIn ? <NavbarAuthMenu /> : <NavbarVisitorMenu />}
           </Box>
+          <IconButton aria-label="cart">
+            <Badge badgeContent={1} color="primary">
+              <ShoppingCartIcon htmlColor="white" />
+            </Badge>
+          </IconButton>
         </Toolbar>
       </Container>
     </AppBar>
