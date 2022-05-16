@@ -2,7 +2,7 @@ import { Container, Typography } from '@mui/material';
 import React from 'react';
 
 const AboutPage: React.FC = () => (
-  <Container>
+  <Container sx={(theme) => theme.mixins.container}>
     <Typography
       component="h1"
       variant="h3"

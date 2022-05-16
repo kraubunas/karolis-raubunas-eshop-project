@@ -29,7 +29,7 @@ const ProductsPage: React.FC = () => {
   };
 
   return (
-    <Container>
+    <Container sx={(theme) => theme.mixins.container}>
       <Typography
         component="h1"
         variant="h3"

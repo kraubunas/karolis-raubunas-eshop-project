@@ -4,6 +4,7 @@ declare module '@mui/material/styles/createMixins' {
   interface Mixins {
     section: CSSProperties;
     box: CSSProperties;
+    container: CSSProperties;
   }
 }
 
