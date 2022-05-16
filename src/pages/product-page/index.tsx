@@ -50,7 +50,7 @@ const ProductsPage: React.FC = () => {
         </>
       </Section>
 
-      <Typography
+      {/* <Typography
         component="h1"
         variant="h3"
         sx={{
@@ -62,7 +62,7 @@ const ProductsPage: React.FC = () => {
       </Typography>
       <Box component="pre">
         {JSON.stringify(cart, null, 2)}
-      </Box>
+      </Box> */}
     </Container>
   );
 };

@@ -1,9 +1,9 @@
-import { CartItem } from '../types/cart-item';
+import { CartItemType } from '../types/cart-item-type';
 import Product from '../types/products';
 
 export type State = {
   products: Product[],
-  cart: CartItem[],
+  cart: CartItemType[],
 };
 
 export type Action = {
