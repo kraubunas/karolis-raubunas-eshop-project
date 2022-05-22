@@ -1,4 +1,5 @@
 import React from 'react';
+import { Box } from '@mui/material';
 import { useRootSelector } from '../../store';
 
 const Cart: React.FC = () => {
@@ -6,10 +7,10 @@ const Cart: React.FC = () => {
 
   return (
 
-    <div>
+    <Box>
       {JSON.stringify(cart, null, 2)}
       {console.log(cart)}
-    </div>
+    </Box>
   );
 };
 

@@ -14,10 +14,13 @@ import NavbarAuthMenu from './navbar-auth-menu';
 import NavbarLink from './navbar-link';
 import NavbarVisitorMenu from './navbar-visitor-menu';
 import AuthContext from '../../features/auth/auth-context';
+import Cart from '../cart/cart';
+import { CartItemType } from '../../types/cart-item-type';
 
 const Navbar: React.FC = () => {
   const [cartOpen, setCartOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
+  const getTotalItems = (items: CartItemType[]) => items.reduce((ack: number, item) => ack + item.amount, 0);
 
   // useEffect(({ cart }) => {
   //   const count = 0;
@@ -43,7 +46,7 @@ const Navbar: React.FC = () => {
             {loggedIn ? <NavbarAuthMenu /> : <NavbarVisitorMenu />}
           </Box>
           <Drawer anchor="right" open={cartOpen} onClose={() => setCartOpen(false)}>
-            cart goes here
+            <Cart />
           </Drawer>
           <IconButton aria-label="cart" sx={{ zIndex: 100 }} onClick={() => setCartOpen(true)}>
             <Badge badgeContent={cartCount} color="primary">

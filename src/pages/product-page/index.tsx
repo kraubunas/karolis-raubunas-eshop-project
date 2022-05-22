@@ -12,7 +12,6 @@ import { useRootDispatch } from '../../store/hooks';
 
 const ProductsPage: React.FC = () => {
   const products = useRootSelector(selectProductsItems);
-  const cart = useRootSelector(selectProductsItemsLoading);
   const dispatch = useRootDispatch();
 
   useEffect(() => {
@@ -40,20 +39,6 @@ const ProductsPage: React.FC = () => {
           ))}
         </>
       </Section>
-
-      <Typography
-        component="h1"
-        variant="h3"
-        sx={{
-          color: 'lightBlue.main',
-        }}
-      >
-        Cart
-
-      </Typography>
-      <Box component="pre">
-        {JSON.stringify(cart, null, 2)}
-      </Box>
     </Container>
   );
 };

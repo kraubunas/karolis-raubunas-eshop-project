@@ -14,4 +14,4 @@ export const selectProductsItems = (state: RootState) => state.products.items;
 export const selectProductsItemsLoading = (state: RootState) => state.products.loading;
 
 // cart selectors
-export const selectCartItems = (state: RootState) => state.cart.items;
+export const selectCartItems = (state: RootState) => state.cart.cart;

@@ -9,7 +9,7 @@ export const createModifyCartItemAction = (productsItemId: string, newAmount: nu
 ): void => {
   const { products, cart } = getState();
 
-  const existingCartItem = cart.items.find((x) => x.itemId === productsItemId);
+  const existingCartItem = cart.cart.find((x) => x.itemId === productsItemId);
   const productsItem = products.items.find((x) => x.id === productsItemId) as Product;
 
   const totalAmount = existingCartItem ? existingCartItem.amount + productsItem.amount : productsItem.amount;
