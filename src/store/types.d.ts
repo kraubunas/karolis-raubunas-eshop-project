@@ -1,12 +1,16 @@
-import { CartItemType } from '../types/cart-item-type';
-import Product from '../types/products';
+import { ThunkDispatch } from 'redux-thunk';
+import { AuthAction, AuthState } from './features/auth/types';
+import { NavigationAction, NavigationState } from './features/navigation/types';
+import { CartAction, CartState } from './features/cart/types';
+import { ProductState, ProductAction } from './features/products/types';
 
-export type State = {
-  products: Product[],
-  cart: CartItemType[],
+export type RootState = {
+  products: ProductState,
+  cart: CartState,
+  auth: AuthState,
+  navigation: NavigationState,
 };
 
-export type Action = {
-  type: string,
-  payload: any,
-};
+export type AppAction = AuthAction | CartAction | NavigationAction | ProductAction;
+
+export type AppDispatch = ThunkDispatch<RootState, undefined, AppAction>;

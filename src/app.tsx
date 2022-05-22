@@ -19,43 +19,39 @@ import store from './store/index';
 
 const App: React.FC = () => (
 
-  <BrowserRouter>
-    <AuthProvider>
-      <ReduxProvider store={store}>
-        <Routes>
-          <Route path="/" element={<LandingPageLayout />}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/products" element={<ProductsPage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route
-              path="auth/login"
-              element={(
-                <RequireVisitor>
-                  <LoginPage />
-                </RequireVisitor>
+  <ReduxProvider store={store}>
+    <Routes>
+      <Route path="/" element={<LandingPageLayout />}>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/products" element={<ProductsPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route
+          path="auth/login"
+          element={(
+            <RequireVisitor>
+              <LoginPage />
+            </RequireVisitor>
           )}
-            />
-            <Route
-              path="auth/register"
-              element={(
-                <RequireVisitor>
-                  <RegisterPage />
-                </RequireVisitor>
+        />
+        <Route
+          path="auth/register"
+          element={(
+            <RequireVisitor>
+              <RegisterPage />
+            </RequireVisitor>
           )}
-            />
-            <Route
-              path="profile"
-              element={(
-                <RequireAuth>
-                  <ProfilePage />
-                </RequireAuth>
+        />
+        <Route
+          path="profile"
+          element={(
+            <RequireAuth>
+              <ProfilePage />
+            </RequireAuth>
           )}
-            />
-          </Route>
-        </Routes>
-      </ReduxProvider>
-    </AuthProvider>
-  </BrowserRouter>
+        />
+      </Route>
+    </Routes>
+  </ReduxProvider>
 );
 
 export default App;

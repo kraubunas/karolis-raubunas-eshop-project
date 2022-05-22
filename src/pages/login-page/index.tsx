@@ -1,11 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Alert, TextField } from '@mui/material';
 import * as Yup from 'yup';
 
 import { FormikConfig, useFormik } from 'formik';
-import AuthContext from '../../features/auth/auth-context';
 import AuthForm from '../../components/auth-form';
+import { useRootSelector, useRootDispatch } from '../../store/hooks';
+import { selectAuthLoading } from '../../store/selectors';
+import { createLoginAction } from '../../store/actions-creators';
 
 type LoginValues = {
   email: string,
@@ -37,11 +39,13 @@ const validationSchema = Yup.object({
 
 const LoginPage: React.FC = () => {
   const [searchParams] = useSearchParams();
-  const { login, loading } = useContext(AuthContext);
+  const loading = useRootSelector(selectAuthLoading);
+  const dispatch = useRootDispatch();
 
   const handleLogin: LoginFormikConfig['onSubmit'] = ({ email, password }) => {
-    const nextPage = searchParams.get('next') ?? '/';
-    login({ email, password }, nextPage);
+    const redirect = searchParams.get('redirect') ?? '/';
+    const loginAction = createLoginAction({ email, password }, redirect);
+    dispatch(loginAction);
   };
 
   const {

@@ -1,32 +1,23 @@
 /* eslint-disable no-console */
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Box, Typography, Container, Grid,
 } from '@mui/material';
-import { useDispatch } from 'react-redux';
 import Section from '../../components/section';
 import ProductCard from '../../components/product-card/product-card';
 import { useRootSelector } from '../../store';
+import { selectProductsItems, selectProductsItemsLoading } from '../../store/selectors';
+import { productFetchItemsAction } from '../../store/features/products/action-creators';
+import { useRootDispatch } from '../../store/hooks';
 
 const ProductsPage: React.FC = () => {
-//   const [products, setProducts] = useState<Product[]>([]);
+  const products = useRootSelector(selectProductsItems);
+  const cart = useRootSelector(selectProductsItemsLoading);
+  const dispatch = useRootDispatch();
 
-  //   useEffect(() => {
-  //     axios.get<Product[]>('http://localhost:8000/products')
-  //       .then(({ data }) => setProducts(data))
-  //       .catch(console.error);
-  //   }, []);
-
-  const products = useRootSelector((state) => state.products);
-  const cart = useRootSelector((state) => state.cart);
-  const dispatch = useDispatch();
-
-  const addToCart = (id: string): void => {
-    dispatch({
-      type: 'ADD_TO_CART',
-      payload: { id },
-    });
-  };
+  useEffect(() => {
+    dispatch(productFetchItemsAction);
+  }, []);
 
   return (
     <Container sx={(theme) => theme.mixins.container}>
@@ -44,7 +35,7 @@ const ProductsPage: React.FC = () => {
         <>
           {products.map((product) => (
             <Grid key={product.id} item xs={4}>
-              <ProductCard {...product} addToCart={addToCart} />
+              <ProductCard {...product} />
             </Grid>
           ))}
         </>

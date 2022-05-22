@@ -8,12 +8,10 @@ import Product from '../../types/products';
 import Img from '../img';
 import 'react-widgets/styles.css';
 
-type ProductCardProps = Product & {
-  addToCart: (itemId: string) => void,
-};
+type ProductCardProps = Product;
 
 const ProductCard: React.FC<ProductCardProps> = ({
-  id, name, category, price, image, addToCart,
+  id, name, category, price, image,
 }) => (
   <Card sx={(theme) => theme.mixins.box}>
     <Typography variant="h4" sx={{ textAlign: 'center' }}>
@@ -31,7 +29,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
       <Box sx={{ width: '70px' }}>
         <NumberPicker defaultValue={1} min={1} max={5} />
       </Box>
-      <Button variant="contained" color="primary" sx={{ display: 'flex', gap: 3 }} onClick={() => addToCart(id)}>
+      <Button variant="contained" color="primary" sx={{ display: 'flex', gap: 3 }}>
         <AddShoppingCart />
         Add to cart
       </Button>

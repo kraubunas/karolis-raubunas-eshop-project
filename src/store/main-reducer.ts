@@ -1,47 +1,14 @@
-/* eslint-disable @typescript-eslint/default-param-last */
-import { Reducer } from 'redux';
-import { v4 as createId } from 'uuid';
-import { Action, State } from './types';
+import { combineReducers } from 'redux';
+import productsReducer from './features/products/products-reducer';
+import cartReducer from './features/cart/cart-reducer';
+import authReducer from './features/auth/auth-reducer';
+import navigationReducer from './features/navigation/navigation-reducer';
 
-const initialState: State = {
-  products: [
-    {
-      id: '1',
-      name: 'Biciu vasko zvake',
-      category: 'zvakes',
-      price: '10.99€',
-      image: ['https://cdn.lisaangel.co.uk/image/cache/data/product-images/ss21/sd-ss21/set-of-three-beeswax-candles-0v8a9980-900x900.jpg'],
-    },
-    {
-      id: '2',
-      name: 'Betono zvakide',
-      category: 'zvakides',
-      price: '10.99€',
-      image: ['https://images.squarespace-cdn.com/content/v1/5771082d9de4bb4c71ed99ea/1608494085664-RNLTKEG1EODN9HJP6HCG/Hexagonal%2BHoneycomb%2Band%2BBees%2BBeeswax%2BCandle.jpg?format=1500w'],
-    },
-    {
-      id: '3',
-      name: 'Betoninis padekliukas',
-      category: 'zvakides',
-      price: '10.99€',
-      image: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuvqpY8jxZ4vF53WBZGG9OULqPg_NXy0TbOg&usqp=CAU'],
-    },
-  ],
-  cart: [],
-};
-
-const mainReducer: Reducer<State, Action> = (state = initialState, action) => {
-  if (action.type === 'ADD_TO_CART') {
-    return {
-      ...state,
-      cart: [
-        ...state.cart,
-        { id: createId(), itemId: action.payload.id, amount: 1 },
-      ],
-    };
-  }
-
-  return { ...state };
-};
+const mainReducer = combineReducers({
+  products: productsReducer,
+  cart: cartReducer,
+  auth: authReducer,
+  navigation: navigationReducer,
+});
 
 export default mainReducer;

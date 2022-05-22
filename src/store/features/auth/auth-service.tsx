@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-namespace */
 import axios from 'axios';
-import Credentials from '../../types/credentials';
-import TempUser from '../../types/temporary-user';
-import User from '../../types/user';
+import Credentials from '../../../types/crudentials';
+import TempUser from '../../../types/temporary-user';
+import User from '../../../types/user';
 
 export type AuthPromise = (credential: Credentials) => Promise<User>;
 
@@ -43,6 +43,12 @@ namespace AuthService {
     };
 
     return createdUser;
+  };
+  export const checkEmailAvailability = async (email: string): Promise<boolean> => {
+    const { data: tempUsers } = await axios.get<TempUser[]>('http://localhost:8000/users');
+    const emails = tempUsers.map((x) => x.email);
+
+    return !emails.includes(email);
   };
 
 }

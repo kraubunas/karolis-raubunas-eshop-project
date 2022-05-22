@@ -7,21 +7,26 @@ import {
   Toolbar,
   Typography,
 } from '@mui/material';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import Badge from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import NavbarAuthMenu from './navbar-auth-menu';
 import NavbarLink from './navbar-link';
 import NavbarVisitorMenu from './navbar-visitor-menu';
 import AuthContext from '../../features/auth/auth-context';
-import { CartItemType } from '../../types/cart-item-type';
 
 const Navbar: React.FC = () => {
   const [cartOpen, setCartOpen] = useState(false);
-  const [cartItems, setCartItems] = useState([] as CartItemType[]);
-  const { loggedIn } = useContext(AuthContext);
+  const [cartCount, setCartCount] = useState(0);
 
-  const getTotalItems = (items: CartItemType[]) => items.reduce((ack: number, item) => ack + item.amount, 0);
+  // useEffect(({ cart }) => {
+  //   const count = 0;
+  //   cart.array.forEach(element => {
+
+  //   });
+  // }, [cart, cartCount]);
+
+  const { loggedIn } = useContext(AuthContext);
 
   return (
 
@@ -41,7 +46,7 @@ const Navbar: React.FC = () => {
             cart goes here
           </Drawer>
           <IconButton aria-label="cart" sx={{ zIndex: 100 }} onClick={() => setCartOpen(true)}>
-            <Badge badgeContent={getTotalItems(cartItems)} color="primary">
+            <Badge badgeContent={cartCount} color="primary">
               <ShoppingCartIcon htmlColor="white" />
             </Badge>
           </IconButton>

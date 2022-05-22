@@ -2,18 +2,17 @@ import React, { useContext } from 'react';
 import { Alert, TextField } from '@mui/material';
 import { FormikConfig, useFormik } from 'formik';
 import * as Yup from 'yup';
+import { useSearchParams } from 'react-router-dom';
 import AuthForm from '../../components/auth-form';
 import AuthContext from '../../features/auth/auth-context';
+import UserRegistration from '../../types/user-registration';
+import { useRootSelector, useRootDispatch } from '../../store/hooks';
+import { selectAuthLoading } from '../../store/selectors';
+import { createRegisterAction } from '../../store/actions-creators';
 
-type RegisterValues = {
-  email: string,
-  password: string,
-  repeatPassword: string,
-};
+type RegisterFormikConfig = FormikConfig<UserRegistration>;
 
-type RegisterFormikConfig = FormikConfig<RegisterValues>;
-
-const initialValues: RegisterValues = {
+const initialValues = {
   email: '',
   password: '',
   repeatPassword: '',
@@ -44,10 +43,14 @@ const validationSchema = Yup.object({
 });
 
 const RegisterPage: React.FC = () => {
-  const { register, loading } = useContext(AuthContext);
+  const [searchParams] = useSearchParams();
+  const loading = useRootSelector(selectAuthLoading);
+  const dispatch = useRootDispatch();
 
   const handleRegister: RegisterFormikConfig['onSubmit'] = ({ email, password, repeatPassword }) => {
-    register({ email, password, repeatPassword });
+    const redirect = searchParams.get('redirect') ?? '/';
+    const registerAction = createRegisterAction({ email, password, repeatPassword }, redirect);
+    dispatch(registerAction);
   };
 
   const {
@@ -59,7 +62,7 @@ const RegisterPage: React.FC = () => {
     handleChange,
     handleBlur,
     handleSubmit,
-  } = useFormik<RegisterValues>({
+  } = useFormik({
     initialValues,
     onSubmit: handleRegister,
     validationSchema,

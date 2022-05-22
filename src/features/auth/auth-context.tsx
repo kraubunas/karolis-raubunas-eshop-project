@@ -2,10 +2,10 @@ import React, { createContext, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import pause from '../../components/helpers/pause';
 import useLocalStorage from '../../hooks/use-local-storage';
-import Credentials from '../../types/credentials';
+import Credentials from '../../types/crudentials';
 import User from '../../types/user';
 import UserRegistration from '../../types/user-registration';
-import AuthService, { AuthPromise } from './auth-service';
+import AuthService, { AuthPromise } from '../../store/features/auth/auth-service';
 
 export type AuthContextType = {
   user: null | User,

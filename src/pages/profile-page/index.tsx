@@ -1,9 +1,10 @@
-import React, { useContext } from 'react';
-import { Typography, Container, Box } from '@mui/material';
-import AuthContext from '../../features/auth/auth-context';
+import React from 'react';
+import { Typography, Container } from '@mui/material';
+import { useRootSelector } from '../../store/hooks';
+import { selectUser } from '../../store/selectors';
 
 const ProfilePage: React.FC = () => {
-  const { user } = useContext(AuthContext);
+  const user = useRootSelector(selectUser);
 
   return (
     <Container>
