@@ -1,13 +1,14 @@
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { FormikConfig, useFormik } from 'formik';
 import { Alert, TextField } from '@mui/material';
 import * as Yup from 'yup';
 
-import { FormikConfig, useFormik } from 'formik';
 import AuthForm from '../../components/auth-form';
-import { useRootSelector, useRootDispatch } from '../../store/hooks';
+import { useRootDispatch } from '../../store/hooks';
 import { selectAuthLoading } from '../../store/selectors';
 import { createLoginAction } from '../../store/actions-creators';
+import { useRootSelector } from '../../store';
 
 type LoginValues = {
   email: string,
