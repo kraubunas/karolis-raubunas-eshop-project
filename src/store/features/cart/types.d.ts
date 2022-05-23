@@ -1,7 +1,7 @@
 import { CartItemType } from '../../../types/cart-item-type';
 
 export type CartState = {
-  cart: CartItemType[],
+  cartItems: CartItemType[],
 };
 
 export type CartAddItemAction = {

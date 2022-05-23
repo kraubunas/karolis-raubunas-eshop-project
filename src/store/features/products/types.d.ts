@@ -1,7 +1,7 @@
 import Product from '../../../types/products';
 
 export type ProductState = {
-  items: Product[],
+  productItems: Product[],
   loading: boolean
 };
 

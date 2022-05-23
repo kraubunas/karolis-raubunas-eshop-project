@@ -3,7 +3,7 @@ import { Reducer } from 'redux';
 import { ProductState, ProductAction } from './types';
 
 const initialState: ProductState = {
-  items: [],
+  productItems: [],
   loading: false,
 };
 
@@ -20,14 +20,14 @@ const productsReducer: Reducer<ProductState, ProductAction> = (state = initialSt
       return {
         ...state,
         loading: false,
-        items: action.payload.items,
+        productItems: action.payload.items,
       };
     }
 
     case 'PRODUCT_CHANGE_ITEM_AMOUNT': {
       return {
         ...state,
-        items: state.items.map((item) => (item.id === action.payload.id
+        items: state.productItems.map((item) => (item.id === action.payload.id
           ? { ...item, amount: action.payload.amount }
           : item
         )),

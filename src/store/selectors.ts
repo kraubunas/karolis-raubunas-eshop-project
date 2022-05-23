@@ -10,8 +10,8 @@ export const selectLoggedIn = (state: RootState) => Boolean(state.auth.user);
 export const selectRedirect = (state: RootState) => state.navigation.redirect;
 
 // shop selectors
-export const selectProductsItems = (state: RootState) => state.products.items;
+export const selectProductsItems = (state: RootState) => state.products.productItems;
 export const selectProductsItemsLoading = (state: RootState) => state.products.loading;
 
 // cart selectors
-export const selectCartItems = (state: RootState) => state.cart.cart;
+export const selectCartItems = (state: RootState) => state.cart.cartItems;
