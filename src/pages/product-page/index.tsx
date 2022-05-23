@@ -26,9 +26,7 @@ const ProductsPage: React.FC = () => {
         sx={{
           color: 'lightBlue.main',
         }}
-      >
-        {products.length === 0 ? 'There is no products' : 'Products'}
-      </Typography>
+      />
 
       <Section sx={(theme) => theme.mixins.section}>
         <>
