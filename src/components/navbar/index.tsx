@@ -11,7 +11,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import Badge from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import NavbarAuthMenu from './navbar-auth-menu';
-import NavbarLink from './navbar-link';
+import NavbarLink, { CartStyle } from './navbar-link';
 import NavbarVisitorMenu from './navbar-visitor-menu';
 import Cart from '../cart/cart';
 import { CartItemType } from '../../types/cart-item-type';
@@ -49,11 +49,13 @@ const Navbar: React.FC = () => {
           <Drawer anchor="right" open={cartOpen} onClose={() => setCartOpen(false)}>
             <Cart />
           </Drawer>
-          <IconButton aria-label="cart" sx={{ zIndex: 100 }} onClick={() => setCartOpen(true)}>
-            <Badge badgeContent={cartCount} color="primary">
-              <ShoppingCartIcon htmlColor="white" />
-            </Badge>
-          </IconButton>
+          <CartStyle>
+            <IconButton aria-label="cart" sx={{ zIndex: 100 }} onClick={() => setCartOpen(true)}>
+              <Badge badgeContent={cartCount} color="primary">
+                <ShoppingCartIcon htmlColor="white" />
+              </Badge>
+            </IconButton>
+          </CartStyle>
         </Toolbar>
       </Container>
     </AppBar>
