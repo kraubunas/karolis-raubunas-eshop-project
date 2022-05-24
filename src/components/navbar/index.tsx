@@ -13,9 +13,10 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import NavbarAuthMenu from './navbar-auth-menu';
 import NavbarLink from './navbar-link';
 import NavbarVisitorMenu from './navbar-visitor-menu';
-import AuthContext from '../../features/auth/auth-context';
 import Cart from '../cart/cart';
 import { CartItemType } from '../../types/cart-item-type';
+import { useRootSelector } from '../../store/hooks';
+import { selectLoggedIn } from '../../store/selectors';
 
 const Navbar: React.FC = () => {
   const [cartOpen, setCartOpen] = useState(false);
@@ -29,7 +30,7 @@ const Navbar: React.FC = () => {
   //   });
   // }, [cart, cartCount]);
 
-  const { loggedIn } = useContext(AuthContext);
+  const loggedIn = useRootSelector(selectLoggedIn);
 
   return (
 

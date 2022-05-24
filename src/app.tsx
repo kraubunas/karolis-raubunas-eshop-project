@@ -14,7 +14,6 @@ import ProfilePage from './pages/profile-page';
 import RegisterPage from './pages/register-page';
 import RequireAuth from './routing/require-auth';
 import RequireVisitor from './routing/require-visitor';
-import { AuthProvider } from './features/auth/auth-context';
 import store from './store/index';
 
 const App: React.FC = () => (

@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-namespace */
 import axios from 'axios';
-import Credentials from '../../../types/crudentials';
+import Crudentials from '../../../types/crudentials';
 import TempUser from '../../../types/temporary-user';
 import User from '../../../types/user';
 
-export type AuthPromise = (credential: Credentials) => Promise<User>;
+export type AuthPromise = (crudential: Crudentials) => Promise<User>;
 
 namespace AuthService {
-  export const login: AuthPromise = async ({ email, password }: Credentials): Promise<User> => {
+  export const login: AuthPromise = async ({ email, password }: Crudentials): Promise<User> => {
     const { data: tempUsers } = await axios.get<TempUser[]>(`http://localhost:8000/users?email=${email}`);
 
     if (tempUsers.length === 0) {
@@ -26,7 +26,7 @@ namespace AuthService {
     };
   };
 
-  export const register: AuthPromise = async ({ email, password }: Credentials): Promise<User> => {
+  export const register: AuthPromise = async ({ email, password }: Crudentials): Promise<User> => {
     const { data: tempUsers } = await axios.get<TempUser[]>('http://localhost:8000/users');
 
     const userExists = tempUsers.map((existingUser) => existingUser.email).includes(email);

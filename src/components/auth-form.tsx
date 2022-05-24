@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
   Alert,
   Box,
@@ -9,7 +9,9 @@ import {
   Typography,
 } from '@mui/material';
 import LoginIcon from '@mui/icons-material/Login';
-import AuthContext from '../features/auth/auth-context';
+import { useRootDispatch, useRootSelector } from '../store/hooks';
+import { selectLoggedIn, selectAuthError } from '../store/selectors';
+import { authClearErrorAction } from '../store/features/auth/auth-action-creators';
 
 type AuthFormProps = {
   formTitle: string,
@@ -27,7 +29,13 @@ const AuthForm: React.FC<AuthFormProps> = ({
   onSubmit,
   children,
 }) => {
-  const { loading, error, clearError } = useContext(AuthContext);
+  const dispath = useRootDispatch();
+  const loading = useRootSelector(selectLoggedIn);
+  const error = useRootSelector(selectAuthError);
+
+  const clearError = () => {
+    dispath(authClearErrorAction);
+  };
 
   return (
     <Container sx={{ position: 'relative', pt: 20 }}>

@@ -11,14 +11,20 @@ import {
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import deepPurple from '@mui/material/colors/deepPurple';
-import AuthContext from '../../features/auth/auth-context';
+import { useRootDispatch, useRootSelector } from '../../store/hooks';
+import { selectUser } from '../../store/selectors';
+import { authLogoutAction } from '../../store/features/auth/auth-action-creators';
 
 const NavbarAuthMenu: React.FC = () => {
   const navigate = useNavigate();
-  const { logout, user } = useContext(AuthContext);
+  const user = useRootSelector(selectUser);
+  const dispatch = useRootDispatch();
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const popperAnchorRef = useRef<HTMLDivElement>(null);
 
+  const logout = () => {
+    dispatch(authLogoutAction);
+  };
   const handleNavigate = (route: string) => {
     setMenuOpen(false);
     navigate(route);
