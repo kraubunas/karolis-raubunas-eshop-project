@@ -40,8 +40,8 @@ const Cart: React.FC = () => {
               <TableCell component="th" scope="row">
                 {product.id}
               </TableCell>
-              {/* <TableCell align="right">{product.price}</TableCell>
-              <TableCell align="right">{product.category}</TableCell> */}
+              <TableCell align="right">{product.price}</TableCell>
+              <TableCell align="right">{product.category}</TableCell>
               <TableCell align="right">{product.amount}</TableCell>
             </TableRow>
           ))}
