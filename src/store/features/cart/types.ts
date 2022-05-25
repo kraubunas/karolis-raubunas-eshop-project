@@ -4,8 +4,14 @@ export type CartState = {
   cartItems: CartItemType[],
 };
 
+export enum CartActionType {
+  CART_ADD_ITEM = 'CART_ADD_ITEM',
+  REMOVE_FROM_CART = 'REMOVE_FROM_CART',
+  CART_UPDATE_ITEM = 'CART_UPDATE_ITEM',
+}
+
 export type CartAddItemAction = {
-  type: 'CART_ADD_ITEM',
+  type: CartActionType.CART_ADD_ITEM,
   payload: {
     id: string,
     itemId: string,
@@ -14,16 +20,15 @@ export type CartAddItemAction = {
 };
 
 export type CartRemoveItemAction = {
-  type: 'REMOVE_FROM_CART',
+  type: CartActionType.REMOVE_FROM_CART,
   payload: {
     id: string,
     itemId: string,
-    amount: number,
   }
 };
 
 export type CartUpdateItemAction = {
-  type: 'CART_UPDATE_ITEM',
+  type: CartActionType.CART_UPDATE_ITEM,
   payload: {
     id: string,
     itemId: string,

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/default-param-last */
 import { Reducer } from 'redux';
-import { ProductState, ProductAction } from './types';
+import { ProductState, ProductAction, ProductsActionType } from './types';
 
 const initialState: ProductState = {
   productItems: [],
@@ -9,14 +9,14 @@ const initialState: ProductState = {
 
 const productsReducer: Reducer<ProductState, ProductAction> = (state = initialState, action) => {
   switch (action.type) {
-    case 'PRODUCT_FETCH_ITEMS_LOADING': {
+    case ProductsActionType.PRODUCT_FETCH_ITEMS_LOADING: {
       return {
         ...state,
         loading: true,
       };
     }
 
-    case 'PRODUCT_FETCH_ITEMS_SUCCESS': {
+    case ProductsActionType.PRODUCT_FETCH_ITEMS_SUCCESS: {
       return {
         ...state,
         loading: false,
@@ -24,7 +24,7 @@ const productsReducer: Reducer<ProductState, ProductAction> = (state = initialSt
       };
     }
 
-    case 'PRODUCT_CHANGE_ITEM_AMOUNT': {
+    case ProductsActionType.PRODUCT_CHANGE_ITEM_AMOUNT: {
       return {
         ...state,
         items: state.productItems.map((item) => (item.id === action.payload.id

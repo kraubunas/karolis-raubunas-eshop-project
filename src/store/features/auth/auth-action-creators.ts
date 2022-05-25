@@ -6,25 +6,25 @@ import UserRegistration from '../../../types/user-registration';
 import { AppAction } from '../../types';
 import { createNavigationSetRedirectAction, navigationClearRedirectAction } from '../navigation/navigation-action-creators';
 import {
-  AuthLoadingAction, AuthClearErrorAction, AuthLogoutAction, AuthSuccessAction, AuthFailureAction,
+  AuthLoadingAction, AuthClearErrorAction, AuthLogoutAction, AuthSuccessAction, AuthFailureAction, AuthActionType,
 } from './types';
 
 export const authLoadingAction: AuthLoadingAction = {
-  type: 'AUTH_LOADING',
+  type: AuthActionType.AUTH_LOADING,
 };
 export const authClearErrorAction: AuthClearErrorAction = {
-  type: 'AUTH_CLEAR_ERROR',
+  type: AuthActionType.AUTH_CLEAR_ERROR,
 };
 export const authLogoutAction: AuthLogoutAction = {
-  type: 'AUTH_LOGOUT',
+  type: AuthActionType.AUTH_LOGOUT,
 };
 export const createAuthSuccessAction = (user: User): AuthSuccessAction => ({
-  type: 'AUTH_SUCCESS',
+  type: AuthActionType.AUTH_SUCCESS,
   payload: { user },
 });
 
 export const createAuthFailureAction = (error: string): AuthFailureAction => ({
-  type: 'AUTH_FAILURE',
+  type: AuthActionType.AUTH_FAILURE,
   payload: { error },
 });
 

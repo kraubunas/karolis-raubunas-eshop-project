@@ -6,6 +6,14 @@ export type AuthState = {
   loading: boolean,
 };
 
+export enum AuthActionType {
+  AUTH_SUCCESS = 'AUTH_SUCCESS',
+  AUTH_FAILURE = 'AUTH_FAILURE',
+  AUTH_LOADING = 'AUTH_LOADING',
+  AUTH_LOGOUT = 'AUTH_LOGOUT',
+  AUTH_CLEAR_ERROR = 'AUTH_CLEAR_ERROR',
+}
+
 export type AuthSuccessAction = {
   type: 'AUTH_SUCCESS',
   payload: {

@@ -2,7 +2,7 @@
 import { Reducer } from 'redux';
 import { v4 as createId } from 'uuid';
 import { CartItemType } from '../../../types/cart-item-type';
-import { CartAction, CartState } from './types';
+import { CartAction, CartActionType, CartState } from './types';
 
 const initialState: CartState = {
   cartItems: [],
@@ -10,7 +10,7 @@ const initialState: CartState = {
 
 const cartReducer: Reducer<CartState, CartAction> = (state = initialState, action) => {
   switch (action.type) {
-    case 'CART_ADD_ITEM': {
+    case CartActionType.CART_ADD_ITEM: {
       const inCart = state.cartItems.find((itm: CartItemType) => (itm.itemId === action.payload.id));
       return {
         ...state,
@@ -20,14 +20,14 @@ const cartReducer: Reducer<CartState, CartAction> = (state = initialState, actio
       };
     }
 
-    case 'REMOVE_FROM_CART': {
+    case CartActionType.REMOVE_FROM_CART: {
       return {
         ...state,
         cart: state.cartItems.filter((item) => item.itemId !== action.payload.id),
       };
     }
 
-    case 'CART_UPDATE_ITEM': {
+    case CartActionType.CART_UPDATE_ITEM: {
       return {
         ...state,
         cart: state.cartItems.map((item) => (item.itemId === action.payload.id
