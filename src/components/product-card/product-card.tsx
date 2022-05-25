@@ -18,7 +18,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   const dispatch = useRootDispatch();
 
   const addToCart = (): void => {
-    const addToCartAction = createModifyCartItemAction(id, amount);
+    const addToCartAction = createModifyCartItemAction(id, name, amount);
     dispatch(addToCartAction);
   };
 
