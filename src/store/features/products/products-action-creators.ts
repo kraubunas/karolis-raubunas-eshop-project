@@ -6,16 +6,17 @@ import {
   ProductFetchItemsLoadingAction,
   ProductFetchItemsSuccessAction,
   ProductFetchItemsFailureAction,
+  ProductsActionType,
 } from './types';
 import Product from '../../../types/products';
 import pause from '../../../helpers/pause';
 
 const productFetchItemsLoadingAction: ProductFetchItemsLoadingAction = {
-  type: 'PRODUCT_FETCH_ITEMS_LOADING',
+  type: ProductsActionType.PRODUCT_FETCH_ITEMS_LOADING,
 };
 
 const createProductFecthItemsSuccessAction = (items: Product[]): ProductFetchItemsSuccessAction => ({
-  type: 'PRODUCT_FETCH_ITEMS_SUCCESS',
+  type: ProductsActionType.PRODUCT_FETCH_ITEMS_SUCCESS,
   payload: { items },
 });
 
