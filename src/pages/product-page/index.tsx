@@ -7,7 +7,7 @@ import Section from '../../components/section';
 import ProductCard from '../../components/product-card/product-card';
 import { useRootSelector } from '../../store';
 import { selectProductsItems, selectProductsItemsLoading } from '../../store/selectors';
-import { productFetchItemsAction } from '../../store/features/products/action-creators';
+import { productFetchItemsAction } from '../../store/features/products/products-action-creators';
 import { useRootDispatch } from '../../store/hooks';
 
 const ProductsPage: React.FC = () => {
