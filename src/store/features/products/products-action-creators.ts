@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import { Dispatch } from 'redux';
 import axios from 'axios';
-import { AppAction } from '../../types';
+import { AppAction } from '../../redux-types';
 import {
   ProductFetchItemsLoadingAction,
   ProductFetchItemsSuccessAction,

@@ -3,7 +3,7 @@ import AuthService, { AuthPromise } from './auth-service';
 import Crudentials from '../../../types/crudentials';
 import User from '../../../types/user';
 import UserRegistration from '../../../types/user-registration';
-import { AppAction } from '../../types';
+import { AppAction } from '../../redux-types';
 import { createNavigationSetRedirectAction, navigationClearRedirectAction } from '../navigation/navigation-action-creators';
 import {
   AuthLoadingAction, AuthClearErrorAction, AuthLogoutAction, AuthSuccessAction, AuthFailureAction, AuthActionType,

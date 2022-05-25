@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import { Dispatch } from 'redux';
-import { AppAction, RootState } from '../../types';
+import { AppAction, RootState } from '../../redux-types';
 import Product from '../../../types/products';
 import {
   CartActionType, CartAddItemAction, CartRemoveItemAction, CartUpdateItemAction,
