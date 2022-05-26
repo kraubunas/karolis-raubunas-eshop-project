@@ -1,51 +1,51 @@
 /* eslint-disable import/prefer-default-export */
 import { Dispatch } from 'redux';
-import { AppAction, RootState } from '../../redux-types';
 import Product from '../../../types/products';
-import {
-  CartActionType, CartAddItemAction, CartRemoveItemAction, CartUpdateItemAction,
-} from './types';
+import { AppAction, RootState } from '../../redux-types';
+import { CartActionType, CartAddItemAction } from './types';
 
-const createCartAddItemAction = (id: string, itemId: string, amount: number): CartAddItemAction => ({
-  type: CartActionType.CART_ADD_ITEM,
-  payload: { id, itemId, amount },
+export const createAddToCartAction = (itemId: string, id: string, amount: number, name: string, category: string, price: string): CartAddItemAction => ({
+  type: CartActionType.ADD_TO_CART,
+  payload: {
+    itemId, id, amount, name, category, price,
+  },
 });
 
-const createCartUpdateItemAction = (id: string, itemId: string, amount: number): CartUpdateItemAction => ({
+export const createCartUpdateItemAction = (itemId: string, id: string, amount: number, name: string, category: string, price: string) => ({
   type: CartActionType.CART_UPDATE_ITEM,
-  payload: { id, itemId, amount },
+  payload: {
+    itemId, id, amount, name, category, price,
+  },
 });
 
-const createCartRemoveItemAction = (id: string, itemId: string): CartRemoveItemAction => ({
+export const removeFromCart = (itemId: string, id: string, amount: number, name: string, category: string, price: string) => ({
   type: CartActionType.REMOVE_FROM_CART,
-  payload: { id, itemId },
+  payload: {
+    itemId, id, amount, name, category, price,
+  },
 });
 
-export const createModifyCartItemAction = (cartItemId: string, productsItemId: string, newAmount: number) => (
+export const createAddToCartActionThunk = (itemId: string, id: string, amount: number, name: string, category: string, price: string) => (
   dispatch: Dispatch<AppAction>,
-  getState: () => RootState,
+  getStore: () => RootState,
 ): void => {
-  const { products, cart } = getState();
+// POanaudodami funkcija getStore, suraskite item'1 pagal itemId ir sukurkite reikaling1 CArtItem
+  const { products, cart } = getStore();
+  const inCart = cart.cartItems.find((itm) => ((itm.id === itemId)));
+  const productsItem = products.productItems.find((x) => x.id === itemId) as Product;
 
-  const existingCartItem = cart.cartItems.find((x) => x.itemId === productsItemId);
-  const productsItem = products.productItems.find((x) => x.id === productsItemId) as Product;
+  const totalAmount = inCart ? inCart.amount + productsItem.amount : productsItem.amount;
 
-  const totalAmount = existingCartItem ? existingCartItem.amount + productsItem.amount : productsItem.amount;
-  const amountLeft = totalAmount - newAmount;
-
-  if (existingCartItem) {
-    if (newAmount > 0) {
-      const cartUpdateItemAction = createCartUpdateItemAction(existingCartItem.id, productsItem.id, newAmount);
+  if (inCart) {
+    if (amount > 0) {
+      const cartUpdateItemAction = createCartUpdateItemAction(inCart.id, inCart.itemId, amount, name, category, price);
       dispatch(cartUpdateItemAction);
     } else {
-      const cartRemoveItemAction = createCartRemoveItemAction(existingCartItem.id, productsItem.id);
-      dispatch(cartRemoveItemAction);
+      const removeFromCartAction = removeFromCart(inCart.itemId, inCart.id, amount, name, category, price);
+      dispatch(removeFromCartAction);
     }
   } else {
-    const cartAddItemAction = createCartAddItemAction(cartItemId, productsItemId, newAmount);
-    dispatch(cartAddItemAction);
+    const addToCartAction = createAddToCartAction(id, itemId, amount, name, category, price);
+    dispatch(addToCartAction);
   }
-
-  // const productsChangeItemAmountAction = createProductsChangeItemAmountAction(productsItemId, amountLeft);
-  // dispatch(productsChangeItemAmountAction)
 };

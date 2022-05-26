@@ -1,21 +1,27 @@
-import { CartItemType } from '../../../types/cart-item-type';
+import { CartItemJoined } from '../../../types/cart-item-joined';
+import { CartItem } from '../../../types/cart-item-type';
+import Product from '../../../types/products';
 
 export type CartState = {
-  cartItems: CartItemType[],
+  cartItems: CartItem[],
+  joinedItems: CartItemJoined[],
 };
 
 export enum CartActionType {
-  CART_ADD_ITEM = 'CART_ADD_ITEM',
+  ADD_TO_CART = 'ADD_TO_CART',
   REMOVE_FROM_CART = 'REMOVE_FROM_CART',
   CART_UPDATE_ITEM = 'CART_UPDATE_ITEM',
 }
 
 export type CartAddItemAction = {
-  type: CartActionType.CART_ADD_ITEM,
+  type: CartActionType.ADD_TO_CART,
   payload: {
-    id: string,
     itemId: string,
+    id: string,
     amount: number,
+    price: string,
+    category: string,
+    name: string,
   }
 };
 

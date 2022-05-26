@@ -7,21 +7,23 @@ import {
   Toolbar,
   Typography,
 } from '@mui/material';
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Badge from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import NavbarAuthMenu from './navbar-auth-menu';
 import NavbarLink, { CartStyle } from './navbar-link';
 import NavbarVisitorMenu from './navbar-visitor-menu';
 import Cart from '../cart/cart';
-import { CartItemType } from '../../types/cart-item-type';
+import { CartItem } from '../../types/cart-item-type';
 import { useRootSelector } from '../../store/hooks';
 import { selectLoggedIn } from '../../store/selectors';
+import { selectCartItemsCount } from '../../store/features/cart/cart-selectors';
 
 const Navbar: React.FC = () => {
   const [cartOpen, setCartOpen] = useState(false);
-  const [cartCount, setCartCount] = useState(0);
-  const getTotalItems = (items: CartItemType[]) => items.reduce((ack: number, item) => ack + item.amount, 0);
+  const [cartItems, setCartItems] = useState([] as CartItem[]);
+
+  const cartItemsCount = useRootSelector(selectCartItemsCount);
 
   // useEffect(({ cart }) => {
   //   const count = 0;
@@ -44,14 +46,14 @@ const Navbar: React.FC = () => {
           <NavbarLink to="/products">Products</NavbarLink>
           <NavbarLink to="/about">About</NavbarLink>
           <Box sx={{ display: 'flex' }}>
-            {loggedIn ? <NavbarAuthMenu /> : <NavbarVisitorMenu />}
+            {loggedIn ? <NavbarAuthMenu /> : null}
           </Box>
           <Drawer anchor="right" open={cartOpen} onClose={() => setCartOpen(false)}>
-            <Cart />
+            <Cart id="1" name="2" price="3" category="4" itemId="5" amount={0} />
           </Drawer>
           <CartStyle>
             <IconButton aria-label="cart" sx={{ zIndex: 100 }} onClick={() => setCartOpen(true)}>
-              <Badge badgeContent={cartCount} color="primary">
+              <Badge badgeContent={cartItemsCount} color="primary">
                 <ShoppingCartIcon htmlColor="white" />
               </Badge>
             </IconButton>
