@@ -32,10 +32,10 @@ const validationSchema = Yup.object({
     .max(32, 'Password must contain 32 characters or less')
     .min(8, 'Password must containe 8 characters or more')
     .required('Password is required')
-    .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/,
-      'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character',
-    ),
+    .matches(/^(?=.*[a-z])/, 'Must have atleast one lower case letter')
+    .matches(/^(?=.*[A-Z])/, 'Must have atlest one upper case letter')
+    .matches(/^(?=.*[0-9])/, 'Must have atleast one number')
+    .matches(/^(?=.*[!@#$%^&*])/, 'Must have atleast one special character'),
 });
 
 const LoginPage: React.FC = () => {
