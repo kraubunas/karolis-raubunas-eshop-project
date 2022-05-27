@@ -24,7 +24,6 @@ export const productFetchItemsAction = async (dispatch: Dispatch<AppAction>): Pr
   dispatch(productFetchItemsLoadingAction);
 
   const { data } = await axios.get<Product[]>('http://localhost:8000/products');
-  await pause(2000);
   const productFecthItemsSuccessAction = createProductFecthItemsSuccessAction(data);
   dispatch(productFecthItemsSuccessAction);
 };

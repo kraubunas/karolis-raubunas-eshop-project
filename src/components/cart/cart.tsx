@@ -23,21 +23,11 @@ const Cart: React.FC<CartItem> = ({
 
   return (
 
-  // <Box>
-  //   {JSON.stringify(cart, null, 2)}
-  //   {console.log(cart)}
-
-  //   {
-  //     cart.map((product) => (
-
-  //     ))
-  //   }
-  // </Box>
-
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
+            <TableCell />
             <TableCell>Name</TableCell>
             <TableCell align="right">Price</TableCell>
             <TableCell align="right">Category</TableCell>
