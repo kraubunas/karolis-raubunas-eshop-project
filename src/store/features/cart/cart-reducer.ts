@@ -12,16 +12,16 @@ const initialState: CartState = {
 };
 
 const cartReducer: Reducer<CartState, CartAction> = (state = initialState, action) => {
-  const inCart = state.cartItems.find((itm) => (itm.itemId === action.payload.id));
+  const inCart = state.cartItems.find((itm) => (itm.id === action.payload.itemId));
+  const items = state.products.find((prod) => prod.id === action.payload.id);
   switch (action.type) {
     case CartActionType.ADD_TO_CART: {
-      // const items = state.products.find((prod) => prod.id === action.payload.id);
       return {
         ...state,
         cartItems: inCart
           ? state.cartItems.map((item) => (item.itemId === action.payload.id
             ? { ...item, amount: item.amount + 1 } : item))
-          : [...state.cartItems, { id: createId(), itemId: action.payload.id, amount: 1 }],
+          : [...state.cartItems, { id: createId(), itemId: action.payload.itemId, amount: 1 }],
         // name: action.payload.name,
         // category: action.payload.category,
         // itemId: action.payload.itemId,

@@ -27,7 +27,7 @@ const productsReducer: Reducer<ProductState, ProductAction> = (state = initialSt
     case ProductsActionType.PRODUCT_CHANGE_ITEM_AMOUNT: {
       return {
         ...state,
-        items: state.productItems.map((item) => (item.id === action.payload.id
+        productItems: state.productItems.map((item) => (item.id === action.payload.id
           ? { ...item, amount: action.payload.amount }
           : item
         )),

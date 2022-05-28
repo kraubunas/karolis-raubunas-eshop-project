@@ -18,7 +18,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   const dispatch = useRootDispatch();
 
   const addToCart = (): void => {
-    const addCartAddItemAction = createAddToCartAction(id, itemId, amount, price, category, name);
+    const addCartAddItemAction = createAddToCartAction(id, itemId, amount);
     dispatch(addCartAddItemAction);
   };
 
@@ -37,9 +37,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
         display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: 2,
       }}
       >
-        <Box sx={{ width: '70px' }}>
+        {/* <Box sx={{ width: '70px' }}>
           <NumberPicker defaultValue={1} min={1} max={5} />
-        </Box>
+        </Box> */}
         <Button variant="contained" color="primary" sx={{ display: 'flex', gap: 3 }} onClick={addToCart}>
           <AddShoppingCart />
           Add to cart

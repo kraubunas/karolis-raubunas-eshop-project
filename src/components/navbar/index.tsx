@@ -49,7 +49,7 @@ const Navbar: React.FC = () => {
             {loggedIn ? <NavbarAuthMenu /> : null}
           </Box>
           <Drawer anchor="right" open={cartOpen} onClose={() => setCartOpen(false)}>
-            <Cart id="1" name="2" price="3" category="4" itemId="5" amount={0} />
+            <Cart id="1" itemId="5" amount={0} />
           </Drawer>
           <CartStyle>
             <IconButton aria-label="cart" sx={{ zIndex: 100 }} onClick={() => setCartOpen(true)}>

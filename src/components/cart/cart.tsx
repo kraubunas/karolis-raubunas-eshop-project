@@ -10,14 +10,14 @@ import { useRootDispatch } from '../../store/hooks';
 import { CartItem } from '../../types/cart-item-type';
 
 const Cart: React.FC<CartItem> = ({
-  id, itemId, amount, price, category, name,
+  id, itemId, amount,
 }) => {
   const cart = useRootSelector(selectCartItems);
 
   const dispatch = useRootDispatch();
 
   const removeFromCartAction = (): void => {
-    const addRemoveFromCartItemAction = removeFromCart(id, itemId, amount, price, category, name);
+    const addRemoveFromCartItemAction = removeFromCart(id, itemId, amount);
     dispatch(addRemoveFromCartItemAction);
   };
 
@@ -43,10 +43,10 @@ const Cart: React.FC<CartItem> = ({
               <IconButton onClick={removeFromCartAction}>
                 <CloseRoundedIcon />
               </IconButton>
-              <TableCell component="th" scope="row">{product.name}</TableCell>
-              <TableCell align="right">{product.price}</TableCell>
-              <TableCell align="right">{product.category}</TableCell>
-              <TableCell align="right">{product.amount}</TableCell>
+              <TableCell component="th" scope="row">{product.amount}</TableCell>
+              <TableCell align="right">{product.itemId}</TableCell>
+              <TableCell align="right">{product.id}</TableCell>
+              {/* <TableCell align="right">{product.amount}</TableCell> */}
             </TableRow>
           ))}
         </TableBody>
