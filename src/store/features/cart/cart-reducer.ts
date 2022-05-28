@@ -13,18 +13,18 @@ const initialState: CartState = {
 
 const cartReducer: Reducer<CartState, CartAction> = (state = initialState, action) => {
   const inCart = state.cartItems.find((itm) => (itm.id === action.payload.itemId));
-  const items = state.products.find((prod) => prod.id === action.payload.id);
+  // const items = state.products.find((prod) => prod.id === action.payload.itemId);
   switch (action.type) {
     case CartActionType.ADD_TO_CART: {
       return {
         ...state,
         cartItems: inCart
           ? state.cartItems.map((item) => (item.itemId === action.payload.id
-            ? { ...item, amount: item.amount + 1 } : item))
-          : [...state.cartItems, { id: createId(), itemId: action.payload.itemId, amount: 1 }],
-        // name: action.payload.name,
-        // category: action.payload.category,
-        // itemId: action.payload.itemId,
+            ? { ...item, amount: item.amount } : item))
+          : [...state.cartItems, {
+            id: createId(), itemId: action.payload.itemId, amount: 1,
+          }],
+        // cia isidet name, category price
       };
     }
 
@@ -32,8 +32,8 @@ const cartReducer: Reducer<CartState, CartAction> = (state = initialState, actio
       return {
         ...state,
         cartItems: state.cartItems.map((item) => (
-          item.itemId === action.payload.id
-            ? { ...item, amount: action.payload.amount }
+          item.id !== action.payload.itemId
+            ? { ...item, amount: item.amount + 1 }
             : item
         )),
       };
@@ -42,7 +42,7 @@ const cartReducer: Reducer<CartState, CartAction> = (state = initialState, actio
     case CartActionType.REMOVE_FROM_CART: {
       return {
         ...state,
-        cartItems: state.cartItems.filter((item) => item.itemId !== action.payload.id),
+        cartItems: state.cartItems.filter((item) => (item.id !== action.payload.itemId)),
       };
     }
 
@@ -51,3 +51,5 @@ const cartReducer: Reducer<CartState, CartAction> = (state = initialState, actio
 };
 
 export default cartReducer;
+
+// if item.payload.itemid ===

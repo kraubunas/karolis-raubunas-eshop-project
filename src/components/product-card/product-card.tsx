@@ -8,7 +8,7 @@ import Product from '../../types/products';
 import Img from '../img';
 import 'react-widgets/styles.css';
 import { useRootDispatch } from '../../store/hooks';
-import { createAddToCartAction } from '../../store/features/cart/cart-action-creators';
+import { createAddToCartAction, createCartUpdateItemAction } from '../../store/features/cart/cart-action-creators';
 
 type ProductCardProps = Product;
 
@@ -18,6 +18,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
   const dispatch = useRootDispatch();
 
   const addToCart = (): void => {
+    const updateCartItemAction = createCartUpdateItemAction(id, itemId, amount);
+    dispatch(updateCartItemAction);
     const addCartAddItemAction = createAddToCartAction(id, itemId, amount);
     dispatch(addCartAddItemAction);
   };
