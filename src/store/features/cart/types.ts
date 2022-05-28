@@ -4,6 +4,7 @@ import Product from '../../../types/products';
 
 export type CartState = {
   cartItems: CartItem[],
+  products: Product[],
   joinedItems: CartItemJoined[],
 };
 
@@ -19,25 +20,23 @@ export type CartAddItemAction = {
     itemId: string,
     id: string,
     amount: number,
-    price: string,
-    category: string,
-    name: string,
   }
 };
 
 export type CartRemoveItemAction = {
   type: CartActionType.REMOVE_FROM_CART,
   payload: {
-    id: string,
     itemId: string,
+    id: string,
+    amount: number,
   }
 };
 
 export type CartUpdateItemAction = {
   type: CartActionType.CART_UPDATE_ITEM,
   payload: {
-    id: string,
     itemId: string,
+    id: string,
     amount: number,
   }
 };

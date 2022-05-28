@@ -8,22 +8,23 @@ import { CartAction, CartActionType, CartState } from './types';
 const initialState: CartState = {
   cartItems: [],
   joinedItems: [],
-  // productItems: [],
+  products: [],
 };
 
 const cartReducer: Reducer<CartState, CartAction> = (state = initialState, action) => {
+  const inCart = state.cartItems.find((itm) => (itm.itemId === action.payload.id));
   switch (action.type) {
     case CartActionType.ADD_TO_CART: {
+      // const items = state.products.find((prod) => prod.id === action.payload.id);
       return {
         ...state,
-        cartItems: [...state.cartItems, {
-          id: createId(),
-          itemId: action.payload.itemId,
-          price: action.payload.name,
-          name: action.payload.price,
-          category: action.payload.category,
-          amount: action.payload.amount,
-        }],
+        cartItems: inCart
+          ? state.cartItems.map((item) => (item.itemId === action.payload.id
+            ? { ...item, amount: item.amount + 1 } : item))
+          : [...state.cartItems, { id: createId(), itemId: action.payload.id, amount: 1 }],
+        // name: action.payload.name,
+        // category: action.payload.category,
+        // itemId: action.payload.itemId,
       };
     }
 
@@ -31,7 +32,7 @@ const cartReducer: Reducer<CartState, CartAction> = (state = initialState, actio
       return {
         ...state,
         cartItems: state.cartItems.map((item) => (
-          item.id === action.payload.id
+          item.itemId === action.payload.id
             ? { ...item, amount: action.payload.amount }
             : item
         )),
@@ -41,7 +42,7 @@ const cartReducer: Reducer<CartState, CartAction> = (state = initialState, actio
     case CartActionType.REMOVE_FROM_CART: {
       return {
         ...state,
-        cartItems: state.cartItems.filter((item) => item.id !== action.payload.itemId),
+        cartItems: state.cartItems.filter((item) => item.itemId !== action.payload.id),
       };
     }
 
