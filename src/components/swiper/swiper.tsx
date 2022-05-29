@@ -15,16 +15,16 @@ import 'swiper/css';
 import 'swiper/css/bundle';
 
 const Image: React.FC = () => (
-  <img style={{ width: '100%', objectFit: 'cover', objectPosition: '0 -150px' }} src={image} alt="nature" />
+  <img style={{ width: '100%', height: '400px', objectFit: 'cover' }} src={image} alt="nature" />
 );
 const Image1: React.FC = () => (
-  <img style={{ width: '100%', objectFit: 'cover', objectPosition: '0 -150px' }} src={image1} alt="nature" />
+  <img style={{ width: '100%', height: '400px', objectFit: 'cover' }} src={image1} alt="nature" />
 );
 const Image2: React.FC = () => (
-  <img style={{ width: '100%', objectFit: 'cover', objectPosition: '0 -150px' }} src={image2} alt="nature" />
+  <img style={{ width: '100%', height: '400px', objectFit: 'cover' }} src={image2} alt="nature" />
 );
 const Image3: React.FC = () => (
-  <img style={{ width: '100%', objectFit: 'cover', objectPosition: '0 -150px' }} src={image3} alt="nature" />
+  <img style={{ width: '100%', height: '400px', objectFit: 'cover' }} src={image3} alt="nature" />
 );
 
 const SwiperComponent: React.FC = () => (
@@ -34,10 +34,7 @@ const SwiperComponent: React.FC = () => (
     slidesPerView={1}
     navigation
     pagination={{ clickable: true }}
-    scrollbar={{ draggable: true }}
-    onSwiper={(swiper) => console.log(swiper)}
-    onSlideChange={() => console.log('slide change')}
-    height={400}
+    height={300}
     autoplay={
       { delay: 10000 }
     }

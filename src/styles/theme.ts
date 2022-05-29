@@ -28,7 +28,8 @@ const customTheme = createTheme(theme, {
     section: {
       display: 'flex',
       justifyContent: 'center',
-      gap: 4,
+      flexWrap: 'wrap',
+      gap: 3,
     },
 
     box: {
@@ -36,11 +37,9 @@ const customTheme = createTheme(theme, {
       flexDirection: 'column',
       alignItems: 'center',
       gap: 2,
-      mt: 7,
-      mb: 10,
       border: 1,
       borderRadius: '5px',
-      width: 400,
+      width: 365,
       height: 'auto',
       padding: '15px',
     },

@@ -6,18 +6,21 @@ import {
   IconButton,
   Toolbar,
   Typography,
+  useMediaQuery,
 } from '@mui/material';
 import React, { useState } from 'react';
 import Badge from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import MenuIcon from '@mui/icons-material/Menu';
 import NavbarAuthMenu from './navbar-auth-menu';
 import NavbarLink, { CartStyle } from './navbar-link';
-import NavbarVisitorMenu from './navbar-visitor-menu';
 import Cart from '../cart/cart';
 import { CartItem } from '../../types/cart-item-type';
 import { useRootSelector } from '../../store/hooks';
 import { selectLoggedIn } from '../../store/selectors';
 import { selectCartItemsCount } from '../../store/features/cart/cart-selectors';
+import theme from '../../styles/theme';
+import NavBarBurgerDropDownMenu from './navbar-burger-dropdown';
 
 const Navbar: React.FC = () => {
   const [cartOpen, setCartOpen] = useState(false);
@@ -34,6 +37,8 @@ const Navbar: React.FC = () => {
 
   const loggedIn = useRootSelector(selectLoggedIn);
 
+  const isMatch = useMediaQuery(theme.breakpoints.down('md'));
+
   return (
 
     <AppBar position="fixed" sx={{ bgcolor: 'darkBlue.main' }}>
@@ -42,9 +47,18 @@ const Navbar: React.FC = () => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Personal Blog
           </Typography>
-          <NavbarLink to="/">Home</NavbarLink>
-          <NavbarLink to="/products">Products</NavbarLink>
-          <NavbarLink to="/about">About</NavbarLink>
+          {
+          isMatch
+            ? <NavBarBurgerDropDownMenu />
+
+            : (
+              <>
+                <NavbarLink to="/">Home</NavbarLink>
+                <NavbarLink to="/products">Products</NavbarLink>
+                <NavbarLink to="/about">About</NavbarLink>
+              </>
+            )
+         }
           <Box sx={{ display: 'flex' }}>
             {loggedIn ? <NavbarAuthMenu /> : null}
           </Box>

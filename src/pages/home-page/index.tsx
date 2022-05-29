@@ -18,7 +18,7 @@ const HomePage: React.FC = () => (
       >
         Home page
       </Typography>
-      <Section sx={{ height: '400px' }}>
+      <Section>
         <SwiperComponent />
       </Section>
     </Container>
