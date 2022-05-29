@@ -20,7 +20,7 @@ const cartReducer: Reducer<CartState, CartAction> = (state = initialState, actio
         ...state,
         cartItems: inCart
           ? state.cartItems.map((item) => (item.itemId === action.payload.id
-            ? { ...item, amount: item.amount } : item))
+            ? { ...item, amount: item.amount + 1 } : item))
           : [...state.cartItems, {
             id: createId(), itemId: action.payload.itemId, amount: 1,
           }],
@@ -33,7 +33,7 @@ const cartReducer: Reducer<CartState, CartAction> = (state = initialState, actio
         ...state,
         cartItems: state.cartItems.map((item) => (
           item.id !== action.payload.itemId
-            ? { ...item, amount: item.amount + 1 }
+            ? { ...item, amount: item.amount }
             : item
         )),
       };
