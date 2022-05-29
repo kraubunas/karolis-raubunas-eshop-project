@@ -28,10 +28,9 @@ const Cart: React.FC<CartItem> = ({
         <TableHead>
           <TableRow>
             <TableCell />
-            <TableCell>Name</TableCell>
-            <TableCell align="right">Price</TableCell>
-            <TableCell align="right">Category</TableCell>
-            <TableCell align="right">Amount</TableCell>
+            <TableCell>Amount</TableCell>
+            <TableCell align="right">Item ID</TableCell>
+            <TableCell align="right">Unique ID</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
