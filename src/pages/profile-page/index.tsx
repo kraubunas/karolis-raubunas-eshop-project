@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Typography, Container, Paper, TextField, Button, FormControl, FormLabel, RadioGroup, FormControlLabel,
+  Typography, Container, Paper, TextField, Button, FormControl, FormLabel, RadioGroup, FormControlLabel, InputAdornment,
 } from '@mui/material';
 import Radio from '@mui/material/Radio';
 import { useRootSelector } from '../../store/hooks';
@@ -24,17 +24,17 @@ const ProfilePage: React.FC = () => {
         {`Hello, ${user?.email}`}
       </Typography>
       <Paper sx={{
-        display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', width: '600px', mt: 3, py: 3,
+        display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', width: { xs: '100%', sm: '100%', md: '500px' }, mt: 3, py: 3,
       }}
       >
-        <Typography component="h1" variant="h4" sx={{ mb: 2 }}>Create new product</Typography>
+        <Typography component="h1" variant="h4" sx={{ mb: 2, textAlign: 'center' }}>Create new product</Typography>
         <Container sx={{
           mt: 1, display: 'flex', flexDirection: 'column', gap: 2,
         }}
         >
           <TextField type="text" required label="Product name" />
           <TextField type="url" required label="Image URL" />
-          <TextField type="text" required label="Price in €" />
+          <TextField type="text" required label="Price in €" InputProps={{ endAdornment: <InputAdornment position="end">€</InputAdornment> }} />
           <FormControl>
             <FormLabel>Category</FormLabel>
             <RadioGroup row>
