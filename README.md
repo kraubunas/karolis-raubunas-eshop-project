@@ -26,6 +26,10 @@ You will also see any lint errors in the console.
 
 Launches the test runner in the interactive watch mode.\
 
+## `to use auth form`
+
+use http://localhost:3000/auth/login for login or http://localhost:3000/auth/register for registration
+
 ### `npm run build`
 
 Builds the app for production to the `build` folder.\
