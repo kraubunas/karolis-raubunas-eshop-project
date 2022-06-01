@@ -32,9 +32,9 @@ const ProfilePage: React.FC = () => {
           mt: 1, display: 'flex', flexDirection: 'column', gap: 2,
         }}
         >
-          <TextField label="Product name" />
-          <TextField label="Image URL" />
-          <TextField label="Price" />
+          <TextField type="text" required label="Product name" />
+          <TextField type="url" required label="Image URL" />
+          <TextField type="text" required label="Price in €" />
           <FormControl>
             <FormLabel>Category</FormLabel>
             <RadioGroup row>
