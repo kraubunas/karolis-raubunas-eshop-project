@@ -7,7 +7,7 @@ import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 import { useRootSelector } from '../../store/hooks';
 import { selectUser } from '../../store/selectors';
 
-const ProfilePage: React.FC = () => {
+const CreateProduct: React.FC = () => {
   const user = useRootSelector(selectUser);
   const [name, setName] = useState('');
   const [image, setImage] = useState(['']);
@@ -79,4 +79,4 @@ const ProfilePage: React.FC = () => {
   );
 };
 
-export default ProfilePage;
+export default CreateProduct;

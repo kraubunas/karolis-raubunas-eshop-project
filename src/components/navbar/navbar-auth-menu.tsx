@@ -58,12 +58,12 @@ const NavbarAuthMenu: React.FC = () => {
       >
         <Paper elevation={3}>
           <MenuList>
-            <MenuItem onClick={() => handleNavigate('/profile')}>
-              ProfilePage
+            <MenuItem onClick={() => handleNavigate('/addNewProduct')}>
+              Add new product
             </MenuItem>
             <Divider />
             <MenuItem onClick={logout}>
-              Atsijungti
+              Logout
             </MenuItem>
           </MenuList>
         </Paper>
