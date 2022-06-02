@@ -10,7 +10,7 @@ import ProductsPage from './pages/product-page';
 import LandingPageLayout from './components/landing-page-layout';
 import AboutPage from './pages/about-page';
 import LoginPage from './pages/login-page';
-import CreateProduct from './pages/profile-page';
+import CreateProduct from './pages/profile-page/add-new-product-page';
 import RegisterPage from './pages/register-page';
 import RequireAuth from './routing/require-auth';
 import RequireVisitor from './routing/require-visitor';
