@@ -58,8 +58,11 @@ const NavbarAuthMenu: React.FC = () => {
       >
         <Paper elevation={3}>
           <MenuList>
-            <MenuItem onClick={() => handleNavigate('/addNewProduct')}>
+            <MenuItem onClick={() => handleNavigate('/add-new-product')}>
               Add new product
+            </MenuItem>
+            <MenuItem onClick={() => handleNavigate('/update-products')}>
+              Update products
             </MenuItem>
             <Divider />
             <MenuItem onClick={logout}>

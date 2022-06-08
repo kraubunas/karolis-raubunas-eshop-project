@@ -15,6 +15,7 @@ import RegisterPage from './pages/register-page';
 import RequireAuth from './routing/require-auth';
 import RequireVisitor from './routing/require-visitor';
 import store from './store/index';
+import DeleteUpdateProductsPage from './pages/update-product-page';
 
 const App: React.FC = () => (
 
@@ -41,10 +42,18 @@ const App: React.FC = () => (
           )}
         />
         <Route
-          path="addNewProduct"
+          path="add-new-product"
           element={(
             <RequireAuth>
               <CreateProduct />
+            </RequireAuth>
+          )}
+        />
+        <Route
+          path="update-products"
+          element={(
+            <RequireAuth>
+              <DeleteUpdateProductsPage />
             </RequireAuth>
           )}
         />
