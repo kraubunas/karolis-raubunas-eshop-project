@@ -15,7 +15,7 @@ import RegisterPage from './pages/register-page';
 import RequireAuth from './routing/require-auth';
 import RequireVisitor from './routing/require-visitor';
 import store from './store/index';
-import DeleteUpdateProductsPage from './pages/update-product-page';
+import DeleteUpdateProductsPage from './pages/update-products-page';
 
 const App: React.FC = () => (
 
