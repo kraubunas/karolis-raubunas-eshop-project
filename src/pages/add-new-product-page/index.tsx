@@ -4,11 +4,13 @@ import {
 } from '@mui/material';
 import Radio from '@mui/material/Radio';
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
+import { useNavigate } from 'react-router-dom';
 import { useRootSelector } from '../../store/hooks';
 import { selectUser } from '../../store/selectors';
 
 const CreateProduct: React.FC = () => {
   const user = useRootSelector(selectUser);
+  const navigate = useNavigate();
   const [name, setName] = useState('');
   const [image, setImage] = useState(['']);
   const [price, setPrice] = useState('');
@@ -25,6 +27,7 @@ const CreateProduct: React.FC = () => {
       body: JSON.stringify(product),
     }).then(() => {
       console.log('new product added');
+      navigate('/products');
     });
   };
 
