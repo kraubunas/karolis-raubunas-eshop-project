@@ -1,5 +1,5 @@
 import { Dispatch } from 'react';
-import AuthService, { AuthPromise } from './auth-service';
+import AuthService, { AuthPromise } from '../../../services/auth-service';
 import Crudentials from '../../../types/crudentials';
 import User from '../../../types/user';
 import UserRegistration from '../../../types/user-registration';

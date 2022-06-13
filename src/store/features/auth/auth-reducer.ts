@@ -3,7 +3,7 @@ import { Reducer } from 'redux';
 import { getLocalStorageItem, setLocalStoreageItem } from '../../../helpers/local-storage-helpers';
 import { AuthAction, AuthActionType, AuthState } from './types';
 
-const USER_KEY_IN_LOCAL_STORAGE = 'user';
+const USER_KEY_IN_LOCAL_STORAGE = process.env.REACT_APP_USER_KEY_IN_LOCAL_STORAGE;
 
 const initialState: AuthState = {
   user: getLocalStorageItem(USER_KEY_IN_LOCAL_STORAGE),
