@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/default-param-last */
 import { Reducer } from 'redux';
-import { ProductState, ProductAction, ProductsActionType } from './types';
+import { ProductState, ProductAction, ProductsActionType } from './products-types';
 
 const initialState: ProductState = {
   productItems: [],

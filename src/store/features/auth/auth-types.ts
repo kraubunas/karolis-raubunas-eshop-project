@@ -15,29 +15,29 @@ export enum AuthActionType {
 }
 
 export type AuthSuccessAction = {
-  type: 'AUTH_SUCCESS',
+  type: AuthActionType.AUTH_SUCCESS,
   payload: {
     user: User,
   }
 };
 
 export type AuthFailureAction = {
-  type: 'AUTH_FAILURE',
+  type: AuthActionType.AUTH_FAILURE,
   payload: {
     error: string,
   }
 };
 
 export type AuthLoadingAction = {
-  type: 'AUTH_LOADING',
+  type: AuthActionType.AUTH_LOADING,
 };
 
 export type AuthLogoutAction = {
-  type: 'AUTH_LOGOUT',
+  type: AuthActionType.AUTH_LOGOUT,
 };
 
 export type AuthClearErrorAction = {
-  type: 'AUTH_CLEAR_ERROR',
+  type: AuthActionType.AUTH_CLEAR_ERROR,
 };
 
 export type AuthAction = AuthSuccessAction | AuthFailureAction | AuthLoadingAction | AuthLogoutAction | AuthClearErrorAction;

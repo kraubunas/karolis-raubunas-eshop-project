@@ -3,7 +3,7 @@
 import { Reducer } from 'redux';
 import { v4 as createId } from 'uuid';
 import { CartItem } from '../../../types/cart-item-type';
-import { CartAction, CartActionType, CartState } from './types';
+import { CartAction, CartActionType, CartState } from './cart-types';
 
 const initialState: CartState = {
   cartItems: [],

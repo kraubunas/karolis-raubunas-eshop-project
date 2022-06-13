@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/default-param-last */
 import { Reducer } from 'redux';
-import { NavigationAction, NavigationActionType, NavigationState } from './types';
+import { NavigationAction, NavigationActionType, NavigationState } from './navigation-types';
 
 const initialState: NavigationState = {
   redirect: null,

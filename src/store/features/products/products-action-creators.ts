@@ -7,7 +7,7 @@ import {
   ProductFetchItemsSuccessAction,
   ProductFetchItemsFailureAction,
   ProductsActionType,
-} from './types';
+} from './products-types';
 import Product from '../../../types/products';
 import pause from '../../../helpers/pause';
 
