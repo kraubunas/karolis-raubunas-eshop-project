@@ -9,6 +9,7 @@ import Product from '../../types/products';
 import Img from '../img';
 import 'react-widgets/styles.css';
 import { useRootDispatch } from '../../store/hooks';
+import ProductCardUpdate from './product-card-update';
 
 type ProductCardProps = Product;
 
